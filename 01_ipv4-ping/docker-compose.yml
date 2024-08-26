@@ -1,0 +1,23 @@
+services:
+  pc-a:
+    build: ./pc-a
+    container_name: pc-a
+    networks:
+      custom_network:
+        ipv4_address: 192.168.1.11
+    tty: true  
+
+  pc-b:
+    build: ./pc-b
+    container_name: pc-b
+    networks:
+      custom_network:
+        ipv4_address: 192.168.1.12
+    tty: true  
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24

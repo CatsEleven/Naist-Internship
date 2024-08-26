@@ -1,0 +1,65 @@
+services:
+  pc-a:
+    build: ./pc-a
+    container_name: pc-a
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      pc-a-network:
+        ipv6_address: 2001:db8:10::20
+     
+
+  pc-b:
+    build: ./pc-b
+    container_name: pc-b
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      pc-b-network:
+        ipv6_address: 2001:db8:20::20
+   
+
+  frr1:
+    build: ./frr1
+    container_name: frr1
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      pc-a-network:
+        ipv6_address: 2001:db8:10::10
+      router-network:
+        ipv6_address: 2001:db8:30::10
+  
+  frr2:
+    build: ./frr2
+    container_name: frr2
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      pc-b-network:
+        ipv6_address: 2001:db8:20::10
+      router-network:
+        ipv6_address: 2001:db8:30::20
+
+networks:
+  pc-a-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 2001:db8:10::/64
+
+  pc-b-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 2001:db8:20::/64
+
+  router-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 2001:db8:30::/64
