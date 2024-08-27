@@ -7,7 +7,10 @@ services:
     privileged: true
     networks:
       pc-a-network:
-        ipv6_address: 2001:db8:10::20
+        ipv6_address: 2001:db8:1:1::20
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
      
 
   pc-b:
@@ -18,7 +21,10 @@ services:
     privileged: true
     networks:
       pc-b-network:
-        ipv6_address: 2001:db8:20::20
+        ipv6_address: 2001:db8:1:2::20
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
    
 
   frr1:
@@ -29,9 +35,12 @@ services:
     privileged: true
     networks:
       pc-a-network:
-        ipv6_address: 2001:db8:10::10
+        ipv6_address: 2001:db8:1:1::10
       router-network:
-        ipv6_address: 2001:db8:30::10
+        ipv6_address: 2001:db8:1:3::10
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
   
   frr2:
     build: ./frr2
@@ -41,25 +50,34 @@ services:
     privileged: true
     networks:
       pc-b-network:
-        ipv6_address: 2001:db8:20::10
+        ipv6_address: 2001:db8:1:2::10
       router-network:
-        ipv6_address: 2001:db8:30::20
+        ipv6_address: 2001:db8:1:3::20
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
 
 networks:
   pc-a-network:
     driver: bridge
+    enable_ipv6: true
     ipam:
+      driver: default
       config:
-        - subnet: 2001:db8:10::/64
+        - subnet: 2001:db8:1:1::/64
 
   pc-b-network:
     driver: bridge
+    enable_ipv6: true
     ipam:
+      driver: default
       config:
-        - subnet: 2001:db8:20::/64
+        - subnet: 2001:db8:1:2::/64
 
   router-network:
     driver: bridge
+    enable_ipv6: true
     ipam:
+      driver: default
       config:
-        - subnet: 2001:db8:30::/64
+        - subnet: 2001:db8:1:3::/64
