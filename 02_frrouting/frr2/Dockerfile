@@ -7,3 +7,7 @@ RUN echo "export PS1='\u@\h:\w\$ '" >> /root/.bashrc
 
 # isisdを有効化する
 RUN echo "isisd=yes" >> /etc/frr/daemons
+
+#txtの内容を、vtyshに流し込む
+# COPY config.txt /etc/frr/config.txt
+# RUN echo "vtysh < /etc/frr/config.txt" >> /root/.bashrc
