@@ -2,6 +2,7 @@ services:
   pc-a:
     build: ./pc-a
     container_name: pc-a
+    hostname: pc-a
     tty: true
     stdin_open: true
     privileged: true
@@ -16,6 +17,7 @@ services:
   pc-b:
     build: ./pc-b
     container_name: pc-b
+    hostname: pc-b
     tty: true
     stdin_open: true
     privileged: true
@@ -30,6 +32,7 @@ services:
   frr1:
     build: ./frr1
     container_name: frr1
+    hostname: frr1
     tty: true
     stdin_open: true
     privileged: true
@@ -45,6 +48,7 @@ services:
   frr2:
     build: ./frr2
     container_name: frr2
+    hostname: frr2
     tty: true
     stdin_open: true
     privileged: true
