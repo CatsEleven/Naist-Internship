@@ -143,3 +143,27 @@ networks:
       driver: default
       config:
         - subnet: 2001:db8:1:40::/64
+
+  router-c-e-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:db8:1:80::/64
+
+  router-d-e-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:db8:1:70::/64
+
+  pc-c-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:db8:1:90::/64
