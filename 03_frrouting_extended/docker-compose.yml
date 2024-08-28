@@ -27,6 +27,20 @@ services:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
 
+  pc-c:
+    build: ./pc-c
+    container_name: pc-c
+    hostname: pc-c
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      pc-c-network:
+        ipv6_address: 2001:db8:1:90::20
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
   frr-a:
     build: ./frr-a
     container_name: frr-a
@@ -75,6 +89,8 @@ services:
         ipv6_address: 2001:db8:1:60::20
       router-c-d-network:
         ipv6_address: 2001:db8:1:50::20
+      router-c-e-network:
+        ipv6_address: 2001:db8:1:80::20
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
@@ -91,6 +107,26 @@ services:
         ipv6_address: 2001:db8:1:40::20
       router-c-d-network:
         ipv6_address: 2001:db8:1:50::10
+      router-d-e-network:
+        ipv6_address: 2001:db8:1:70::10
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  frr-e:
+    build: ./frr-e
+    container_name: frr-e
+    hostname: frr-e
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      pc-c-network:
+        ipv6_address: 2001:db8:1:90::10
+      router-c-e-network:
+        ipv6_address: 2001:db8:1:80::10
+      router-d-e-network:
+        ipv6_address: 2001:db8:1:70::20
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
@@ -111,6 +147,14 @@ networks:
       driver: default
       config:
         - subnet: 2001:db8:1:20::/64
+
+  pc-c-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:db8:1:90::/64
 
   router-a-b-network:
     driver: bridge
@@ -160,10 +204,4 @@ networks:
       config:
         - subnet: 2001:db8:1:70::/64
 
-  pc-c-network:
-    driver: bridge
-    enable_ipv6: true
-    ipam:
-      driver: default
-      config:
-        - subnet: 2001:db8:1:90::/64
+
