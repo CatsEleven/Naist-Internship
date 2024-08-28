@@ -1,4 +1,4 @@
-FROM frrouting/frr
+FROM quay.io/frrouting/frr:10.1.0
 
 COPY frr.conf /etc/frr/frr.conf
 RUN apk update && apk add vim iputils iproute2 net-tools traceroute

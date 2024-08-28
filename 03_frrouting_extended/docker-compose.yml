@@ -56,6 +56,8 @@ services:
       router-a-d-network:
         ipv6_address: 2001:db8:1:40::10
     sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
 
@@ -74,6 +76,8 @@ services:
       router-b-c-network:
         ipv6_address: 2001:db8:1:60::10
     sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
 
@@ -92,6 +96,8 @@ services:
       router-c-e-network:
         ipv6_address: 2001:db8:1:80::20
     sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
 
@@ -110,6 +116,8 @@ services:
       router-d-e-network:
         ipv6_address: 2001:db8:1:70::10
     sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
 
@@ -128,6 +136,8 @@ services:
       router-d-e-network:
         ipv6_address: 2001:db8:1:70::20
     sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
 
