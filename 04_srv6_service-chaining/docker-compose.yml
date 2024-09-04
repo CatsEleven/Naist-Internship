@@ -115,6 +115,8 @@ services:
         ipv6_address: 2001:db8:1:50::10
       router-d-e-network:
         ipv6_address: 2001:db8:1:70::10
+      router-d-srext-network:
+        ipv6_address: 2001:db8:1:1::20
     sysctls:
       - net.ipv6.conf.all.forwarding=1
       - net.ipv6.conf.all.seg6_enabled=1
@@ -140,6 +142,42 @@ services:
       - net.ipv6.conf.all.seg6_enabled=1
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.default.disable_ipv6=0
+
+  srext:
+    build: ./srext
+    container_name: srext
+    hostname: srext
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      router-d-srext-network:
+        ipv6_address: 2001:db8:1:1::10
+      srext-ips-network:
+        ipv6_address: 2001:db8:1:2::20
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  ips:
+    build: ./ips
+    container_name: ips
+    hostname: ips
+    tty: true
+    stdin_open: true
+    privileged: true
+    networks:
+      srext-ips-network:
+        ipv6_address: 2001:db8:1:2::10
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+
 
 networks:
   pc-a-network:
@@ -213,5 +251,21 @@ networks:
       driver: default
       config:
         - subnet: 2001:db8:1:70::/64
+
+  router-d-srext-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:db8:1:1::/64
+
+  srext-ips-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:db8:1:2::/64
 
 
