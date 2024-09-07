@@ -1,7 +1,7 @@
 FROM quay.io/frrouting/frr:10.1.0
 
 COPY frr.conf /etc/frr/frr.conf
-RUN apk update && apk add vim iputils iproute2 net-tools traceroute
+RUN apk update && apk add vim iputils iproute2 net-tools traceroute tcpdump
 RUN echo "service integrated-vtysh-config" > /etc/frr/vtysh.conf
 RUN echo "export PS1='\u@\h:\w\$ '" >> /root/.bashrc
 
