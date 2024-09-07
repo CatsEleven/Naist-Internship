@@ -1,0 +1,233 @@
+services:
+  pc-a:
+    build: ./pc-a
+    container_name: pc-a
+    hostname: pc-a
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  pc-b:
+    build: ./pc-b
+    container_name: pc-b
+    hostname: pc-b
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  pc-c:
+    build: ./pc-c
+    container_name: pc-c
+    hostname: pc-c
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  frr-a:
+    build: ./frr-a
+    container_name: frr-a
+    hostname: frr-a
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  frr-b:
+    build: ./frr-b
+    container_name: frr-b
+    hostname: frr-b
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  frr-c:
+    build: ./frr-c
+    container_name: frr-c
+    hostname: frr-c
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  frr-d:
+    build: ./frr-d
+    container_name: frr-d
+    hostname: frr-d
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  frr-e:
+    build: ./frr-e
+    container_name: frr-e
+    hostname: frr-e
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+  # srext:
+  #   build: ./srext
+  #   container_name: srext
+  #   hostname: srext
+  #   tty: true
+  #   stdin_open: true
+  #   privileged: true
+  #   networks:
+  #     router-d-srext-network:
+  #       ipv6_address: 2001:db8:1:1::10
+  #     srext-ips-network:
+  #       ipv6_address: 2001:db8:1:2::20
+  #   sysctls:
+  #     - net.ipv6.conf.all.forwarding=1
+  #     - net.ipv6.conf.all.seg6_enabled=1
+  #     - net.ipv6.conf.all.disable_ipv6=0
+  #     - net.ipv6.conf.default.disable_ipv6=0
+
+  ips:
+    build: ./ips
+    container_name: ips
+    hostname: ips
+    tty: true
+    stdin_open: true
+    privileged: true
+    network_mode: none
+    sysctls:
+      - net.ipv6.conf.all.forwarding=1
+      - net.ipv6.conf.all.seg6_enabled=1
+      - net.ipv6.conf.all.disable_ipv6=0
+      - net.ipv6.conf.default.disable_ipv6=0
+
+
+
+# networks:
+#   pc-a-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:10::/64
+
+#   pc-b-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:20::/64
+
+#   pc-c-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:90::/64
+
+#   router-a-b-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:30::/64
+
+#   router-b-c-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:60::/64
+
+#   router-c-d-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:50::/64  
+  
+#   router-a-d-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:40::/64
+
+#   router-c-e-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:80::/64
+
+#   router-d-e-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:70::/64
+
+#   router-d-srext-network:
+#     driver: macvlan
+#     enable_ipv6: true
+#     driver_opts:
+#       parent: test-br0
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:1::/64
+
+#   srext-ips-network:
+#     driver: bridge
+#     enable_ipv6: true
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 2001:db8:1:2::/64
+
+
