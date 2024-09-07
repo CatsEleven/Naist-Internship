@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 RUN apt update && \
     apt install -y vim iputils-ping iproute2 net-tools traceroute git make build-essential gcc-12 \
     autoconf automake binutils cpp gcc linux-headers-$(uname -r) psmisc \
-    kmod linux-modules-$(uname -r) sudo
+    kmod linux-modules-$(uname -r) sudo tcpdump
 
 RUN mkdir home/project && \
     cd home/project && \
